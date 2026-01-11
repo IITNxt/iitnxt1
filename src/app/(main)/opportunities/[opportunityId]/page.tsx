@@ -34,7 +34,7 @@ export default async function OpportunityPage({ params }: PageProps) {
       {!["careerprep", "programs", "projects", "startup-mentorship", "workshops"].includes(opportunityId) && (
         <div className="container mx-auto px-4 py-8 text-center">
           <h1 className="text-2xl font-bold">Opportunity Not Found</h1>
-          <p className="mt-4">The opportunity "{rawId}" does not exist.</p>
+          <p className="mt-4">The opportunity &quot;{rawId}&quot; does not exist.</p>
         </div>
       )}
     </div>

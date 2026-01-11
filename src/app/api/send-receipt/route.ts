@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
-export const runtime = 'edge';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const runtime = 'edge';
 
 export async function POST(req: Request) {
   try {
@@ -16,11 +14,23 @@ export async function POST(req: Request) {
 
     try {
       console.log(`Attempting to send email to ${email} with amount ${amount}...`);
-      const data = await resend.emails.send({
-        from: 'IITNxt Donation <onboarding@resend.dev>', // Free tier must use this or verified domain
-        to: [email],
-        subject: 'Donation Receipt - IITNxt',
-        html: `
+
+      const resendApiKey = process.env.RESEND_API_KEY;
+      if (!resendApiKey) {
+        throw new Error("Missing RESEND_API_KEY");
+      }
+
+      const response = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${resendApiKey}`
+        },
+        body: JSON.stringify({
+          from: 'IITNxt Donation <onboarding@resend.dev>', // Free tier must use this or verified domain
+          to: [email],
+          subject: 'Donation Receipt - IITNxt',
+          html: `
           <div style="font-family: 'Times New Roman', serif; max-width: 800px; margin: 0 auto; background-color: #ffffff; border: 2px solid #000; padding: 20px; color: #000;">
             
             <!-- Header -->
@@ -123,13 +133,13 @@ export async function POST(req: Request) {
             </div>
           </div>
         `,
-      });
+        });
 
-      return NextResponse.json(data);
+        return NextResponse.json(data);
+      } catch {
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+      }
     } catch {
-      return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+      return NextResponse.json({ error: "Invalid Request" }, { status: 400 });
     }
-  } catch {
-    return NextResponse.json({ error: "Invalid Request" }, { status: 400 });
   }
-}
