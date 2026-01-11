@@ -133,13 +133,23 @@ export async function POST(req: Request) {
             </div>
           </div>
         `,
-        });
+        })
+      });
 
-        return NextResponse.json(data);
-      } catch {
-        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Resend API Error:", errorData);
+        throw new Error(errorData.message || "Resend API Error");
       }
-    } catch {
-      return NextResponse.json({ error: "Invalid Request" }, { status: 400 });
+
+      const data = await response.json();
+      return NextResponse.json(data);
+    } catch (error) {
+      console.error("Email Sending Error:", error);
+      return NextResponse.json({ error: "Email Sending Failed" }, { status: 500 });
     }
+  } catch (error) {
+    console.error("Invalid Request Error:", error);
+    return NextResponse.json({ error: "Invalid Request" }, { status: 400 });
   }
+}
