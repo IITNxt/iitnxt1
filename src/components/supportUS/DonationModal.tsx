@@ -169,6 +169,7 @@ export default function DonationModal({ isOpen, onClose, defaultAmount = 1000 }:
                 },
             };
 
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const paymentObject = new (window as any).Razorpay(options);
             paymentObject.open();
 
