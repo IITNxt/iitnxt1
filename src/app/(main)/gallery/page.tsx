@@ -48,7 +48,7 @@ function getGalleries() {
   }
 }
 
-export const dynamic = 'force-dynamic'; // Ensure it updates without rebuilds
+// export const dynamic = 'force-dynamic'; // Removed to enforce static generation for Cloudflare
 
 export default function GalleryPage() {
   const galleries = getGalleries();
