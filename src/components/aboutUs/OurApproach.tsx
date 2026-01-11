@@ -5,7 +5,7 @@ import { BookOpen, GraduationCap, Smile, Cpu, Rocket, Heart } from "lucide-react
 export interface ApproachItem {
   title: string;
   description: string;
-  icon?: any;
+  icon: React.ElementType;
 }
 
 const approachData: ApproachItem[] = [

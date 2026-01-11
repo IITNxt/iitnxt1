@@ -15,7 +15,7 @@ export default function JobPostingSection() {
           Hire top talent from IITNxt
         </h2>
         <p className="text-neutral-700 text-base mb-4">
-          Connect with India's brightest students ready to transform your organization.
+          Connect with India&apos;s brightest students ready to transform your organization.
         </p>
         <button
           onClick={handlePostJobClick}

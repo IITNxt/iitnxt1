@@ -29,7 +29,7 @@ function getGalleries() {
           if (fs.existsSync(descPath)) {
             description = fs.readFileSync(descPath, "utf-8");
           }
-        } catch (e) {
+        } catch {
           // ignore error
         }
 

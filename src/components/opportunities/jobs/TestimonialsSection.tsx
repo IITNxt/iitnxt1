@@ -31,7 +31,7 @@ export default function TestimonialsSection() {
               key={idx}
               className="bg-white p-6 rounded-xl shadow-md border-t-4 border-[#799351]"
             >
-              <p className="text-gray-700 italic">"{t.feedback}"</p>
+              <p className="text-gray-700 italic">&quot;{t.feedback}&quot;</p>
               <div className="mt-4 text-sm font-semibold text-[#A20A0A]">
                 {t.name} – {t.role}
               </div>

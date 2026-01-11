@@ -125,10 +125,10 @@ export async function POST(req: Request) {
       });
 
       return NextResponse.json(data);
-    } catch (error) {
-      return NextResponse.json({ error }, { status: 500 });
+    } catch {
+      return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Invalid Request" }, { status: 400 });
   }
 }

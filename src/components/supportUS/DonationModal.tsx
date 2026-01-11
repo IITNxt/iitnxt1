@@ -123,9 +123,11 @@ export default function DonationModal({ isOpen, onClose, defaultAmount = 1000 }:
                 description: "Student Sponsorship Donation",
                 image: "/logo.png",
                 order_id: orderData.id,
-                handler: function (response: any) {
+                handler: function (response: { razorpay_payment_id: string }) {
                     console.log("Payment Success Handler Triggered", response);
+
                     setLoading(true);
+                    setPaymentId(response.razorpay_payment_id);
 
                     // 1. Send Receipt Email in Background
                     fetch('/api/send-receipt', {

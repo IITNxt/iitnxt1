@@ -26,7 +26,7 @@ export default function AboutUsPage() {
             Empowering the Innovators of Tomorrow
           </h2>
           <p className="text-xl italic text-[#799351]">
-            "Śikṣā sārthakaṃ jīvanam" – Education for a Meaningful Life
+            &quot;Śikṣā sārthakaṃ jīvanam&quot; – Education for a Meaningful Life
           </p>
         </section>
 

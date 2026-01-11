@@ -10,6 +10,13 @@ import {
   Filter,
 } from "lucide-react";
 
+interface Job {
+  title: string;
+  company: string;
+  location: string;
+  salary: string;
+}
+
 const jobFilters = [
   "Big brands",
   "Work from home",
@@ -21,7 +28,7 @@ const jobFilters = [
   "Data Science",
 ];
 
-const jobData: Record<string, any[]> = {
+const jobData: Record<string, Job[]> = {
   "Big brands": [
     {
       title: "Customer Support Specialist",
@@ -137,11 +144,10 @@ export default function FresherJobsSection() {
             <button
               key={filter}
               onClick={() => setSelectedFilter(filter)}
-              className={`px-4 py-1.5 rounded-full border text-xs font-medium ${
-                selectedFilter === filter
+              className={`px-4 py-1.5 rounded-full border text-xs font-medium ${selectedFilter === filter
                   ? "bg-[#799351] text-white"
                   : "bg-white text-[#0f172a]"
-              }`}
+                }`}
             >
               {filter}
             </button>
