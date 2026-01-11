@@ -1,3 +1,4 @@
+export const dynamic = 'force-static';
 import ImageGrid from "@/components/gallery/index";
 import HeroSection from "@/components/gallery/HeroSection";
 import fs from "fs";

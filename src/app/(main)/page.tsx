@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import ContactUsSection from "@/components/home/ContactUsSection";
 import CorePillarSection from "@/components/home/CorePillarSection";
 import EcosystemSection from "@/components/home/EcosystemSection";

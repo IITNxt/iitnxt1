@@ -1,4 +1,4 @@
-// src/app/(main)/opportunities/[opportunityId]/page.tsx
+export const runtime = 'edge';
 
 import JobsSection from "@/components/opportunities/jobs";
 import InternshipsSection from "@/components/opportunities/programs";
@@ -18,26 +18,24 @@ export default async function OpportunityPage({ params }: PageProps) {
   const opportunityId = rawId.toLowerCase();
 
   if (!opportunityId) {
-    return <div className="p-6 text-red-500">Invalid opportunity ID</div>;
+    return <div>Opportunity not found</div>;
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold capitalize mb-6">
-        {opportunityId.replace("-", " ")} Opportunity
-      </h1>
-
-      {opportunityId === "jobs" && <JobsSection />}
-      {opportunityId === "internships" && <InternshipsSection />}
+    <div className="pt-24 min-h-screen">
+      {/* Dynamic Content based on opportunityId */}
+      {opportunityId === "careerprep" && <JobsSection />}
+      {opportunityId === "programs" && <InternshipsSection />}
       {opportunityId === "projects" && <ProjectsSection />}
       {opportunityId === "startup-mentorship" && <MentorshipSection />}
       {opportunityId === "workshops" && <WorkshopsSection />}
 
-      {/* fallback */}
-      {!["jobs", "internships", "projects", "startup-mentorship", "workshops"].includes(opportunityId) && (
-        <p className="text-gray-600 mt-4">
-          Sorry, we don’t have a section for <strong>{opportunityId}</strong> yet.
-        </p>
+      {/* Fallback for unknown IDs - strictly typed check above handles valid cases but good for safety */}
+      {!["careerprep", "programs", "projects", "startup-mentorship", "workshops"].includes(opportunityId) && (
+        <div className="container mx-auto px-4 py-8 text-center">
+          <h1 className="text-2xl font-bold">Opportunity Not Found</h1>
+          <p className="mt-4">The opportunity "{rawId}" does not exist.</p>
+        </div>
       )}
     </div>
   );
