@@ -7,14 +7,15 @@ import MentorshipSection from "@/components/opportunities/startup-mentorship";
 import WorkshopsSection from "@/components/opportunities/workshops";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     opportunityId: string;
-  };
+  }>;
 }
 
-export default function OpportunityPage({ params }: PageProps) {
+export default async function OpportunityPage({ params }: PageProps) {
   // normalize to lowercase for safe matching
-  const opportunityId = params.opportunityId.toLowerCase();
+  const { opportunityId: rawId } = await params;
+  const opportunityId = rawId.toLowerCase();
 
   if (!opportunityId) {
     return <div className="p-6 text-red-500">Invalid opportunity ID</div>;
